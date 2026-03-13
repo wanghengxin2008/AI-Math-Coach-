@@ -32,5 +32,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: MathCoach-Mac-Version
-        # 关键点3：Mac 的可执行文件通常没有后缀名
+        # 关键点3：Mac 的可执行文件通常没有后缀
         path: dist/math_coach
