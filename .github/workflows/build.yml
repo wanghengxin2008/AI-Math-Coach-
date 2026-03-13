@@ -1,29 +1,35 @@
-name: Build Windows EXE
+name: Build App on Mac
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: macos-latest  # 这里换成了 Mac 服务器
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    - name: Install Python
-      uses: actions/setup-python@v5
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
+        python-version: '3.9'
 
     - name: Install PyInstaller
-      run: pip install pyinstaller
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install pyinstaller
 
-    - name: Build EXE
-      run: pyinstaller --onefile "math_coach.py"
+    - name: Build App
+      run: |
+        # --windowed 参数会让它生成一个 .app 文件夹
+        pyinstaller --onefile --windowed math_coach.py
 
-    - name: Upload EXE
-      uses: actions/upload-artifact@v4
+    - name: Upload Result
+      uses: actions/upload-artifact@v3
       with:
-        name: AI-Math-Coach-Windows
-        path: dist/*.exe
+        name: MathCoach-Mac-Version
+        path: dist/math_coach
