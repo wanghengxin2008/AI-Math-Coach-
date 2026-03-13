@@ -57,18 +57,18 @@ print(f"你的最终分数是{score}")
 
 
 if score == 5:
-    print(f"彦卿同学真是天才")
+    print(f"真是天才")
 elif 4 >= score >= 3 :
-    print("彦卿同学做的不错")
+    print("做的不错")
 else:
-    print("彦卿同学还得练啊")
+    print("还得练啊")
 
 if wrong_dict:
     print(f"你的错题清单为：")
     for x, y  in wrong_dict.items():
         print(f"题干：{x}, 你的答案：{y}")
 else:
-    print("欢迎下次光临，炎卿同学")
+    print("欢迎下次光临！")
 
 input("\n按回车键退出练习...")
 
